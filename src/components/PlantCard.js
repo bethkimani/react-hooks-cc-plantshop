@@ -1,12 +1,14 @@
 import React from "react";
 
-function PlantCard() {
+function PlantCard({ plant }) {
+  const { name, image, price, inStock } = plant;
+
   return (
-    <li className="card" data-testid="plant-item">
-      <img src={"https://via.placeholder.com/400"} alt={"plant name"} />
-      <h4>{"plant name"}</h4>
-      <p>Price: {"plant price"}</p>
-      {true ? (
+    <li className="card">
+      <img src={image} alt={name} />
+      <h4>{name}</h4>
+      <p>Price: ${price}</p>
+      {inStock ? (
         <button className="primary">In Stock</button>
       ) : (
         <button>Out of Stock</button>

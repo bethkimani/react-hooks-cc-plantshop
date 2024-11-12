@@ -1,4 +1,3 @@
-
 import React from "react";
 
 function Header() {
@@ -6,7 +5,7 @@ function Header() {
     <header>
       <h1>
         Plantsy
-        <span className="logo" role="img" aria-label="plant">
+        <span className="logo" role="img">
           🌱
         </span>
       </h1>

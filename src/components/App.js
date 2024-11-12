@@ -4,24 +4,30 @@ import PlantPage from "./PlantPage";
 
 function App() {
   const [plants, setPlants] = useState([]);
-  const [filteredPlants, setFilteredPlants] = useState([]);
 
   useEffect(() => {
-    // Fetching data from the backend
     fetch("http://localhost:6001/plants")
       .then((response) => response.json())
-      .then((data) => {
-        setPlants(data);
-        setFilteredPlants(data); // Initially, show all plants
-      });
+      .then((data) => setPlants(data));
   }, []);
+
+  function handleDeletePlant(id) {
+    setPlants(plants.filter((plant) => plant.id !== id));
+  }
+
+  function handleUpdatePlant(updatedPlant) {
+    setPlants(plants.map((plant) =>
+      plant.id === updatedPlant.id ? updatedPlant : plant
+    ));
+  }
 
   return (
     <div className="app">
       <Header />
       <PlantPage
-        plants={filteredPlants}
-        setFilteredPlants={setFilteredPlants}
+        plants={plants}
+        onDeletePlant={handleDeletePlant}
+        onUpdatePlant={handleUpdatePlant}
       />
     </div>
   );

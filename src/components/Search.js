@@ -1,14 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-function Search({ plants, setFilteredPlants }) {
-  const handleSearch = (e) => {
-    const query = e.target.value.toLowerCase();
-    const filtered = plants.filter((plant) =>
-      plant.name.toLowerCase().includes(query)
-    );
-    setFilteredPlants(filtered);
-  };
-
+function Search({ searchTerm, onSearchChange }) {
   return (
     <div className="searchbar">
       <label htmlFor="search">Search Plants:</label>
@@ -16,7 +8,8 @@ function Search({ plants, setFilteredPlants }) {
         type="text"
         id="search"
         placeholder="Type a name to search..."
-        onChange={handleSearch}
+        value={searchTerm}
+        onChange={(e) => onSearchChange(e.target.value)}
       />
     </div>
   );
